@@ -1,6 +1,5 @@
 package com.example.home.deltatask2;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -23,6 +22,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    //commands to be used are 'up','down','left' and 'right' to move the ball
+    //commands 'increase' and 'decrease' change the dimension
 
     private int width=1600, height=2000;
     private float x=width/2,y=height/2,vx=1,vy=1,r=30;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
-
+//to move up
     void up(){
         paint.setColor(Color.WHITE);
         c.drawCircle(x,y,r,paint);
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             imageview.invalidate();
         }
 
-
+//to move down
 
     void down(){
         paint.setColor(Color.WHITE);
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageview.invalidate();
     }
 
+//to move left
     void left(){
         paint.setColor(Color.WHITE);
         c.drawCircle(x,y,r,paint);
@@ -97,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageview.invalidate();
     }
 
-
+//to move right
     void right()
     {
         paint.setColor(Color.WHITE);
@@ -144,11 +146,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == VOICE_RECOGNITION_REQUEST_CODE && resultCode == RESULT_OK) {
-            // Fill the list view with the strings the recognizer thought it
-            // could have heard
+            // Fill the list view with the strings the recognizer thought it could have heard
+        
             ArrayList matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             mList.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, matches));
-
+//checking the list for matches
             if (matches.contains("up")) {
                 for (int i = 0; i < 10; i++) {
                     up();
